@@ -10,11 +10,10 @@ class RedditbotSpider(scrapy.Spider):
     def parse(self, response):
         titles = response.css(".ILDoH::text").extract()
         votes = response.css("._1rZYMD_4xY3gRcSS3p8ODO::text").extract()
-        # there are dual entries of each vote count on each page
+        # there are dual entries of each vote count on each page (why the F?)
         # cleanup begins
         for i in range(0, int(len(votes)/2)):
             votes[i] = votes[2*i]
-
 
         # times = response.css('time::attr(title)').extract()
         # comments = response.css('.comments::text').extract()
